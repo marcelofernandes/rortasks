@@ -2,6 +2,25 @@
 
 <h1>Listing <%= plural_table_name.titleize %></h1>
 
+<% if plural_table_name.titleize == 'Testcases' or plural_table_name.titleize == 'Quizzes' or plural_table_name.titleize == 'Courses' -%>
+  <ul class="w3-ul w3-hoverable">
+
+    <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+      <li class="w3-border">
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+        <p><span class="w3-tag w3-blue"><%%= <%= singular_table_name %>.<%= attribute.name %> %></span></p>
+<% end -%>
+        <p><span class="w3-tag w3-blue"><%%= link_to 'Show', <%= singular_table_name %> %></td>
+        <p><span class="w3-tag w3-blue"><%%= link_to 'Edit', edit_<%= singular_table_name %>_path(<%= singular_table_name %>) %></span></p>
+        <p><span class="w3-tag w3-blue"><%%= link_to 'Destroy', <%= singular_table_name %>, method: :delete, data: { confirm: 'Are you sure?' } %></span></p>
+     </li>
+    <%% end %>
+
+</ul>
+
+<br>
+
+<% else -%>
 <table>
   <thead>
     <tr>
@@ -28,4 +47,9 @@
 
 <br>
 
+<% end -%>
+
+ 
+
 <%%= link_to 'New <%= human_name %>', new_<%= singular_table_name %>_path %>
+
