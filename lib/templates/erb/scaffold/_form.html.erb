@@ -13,6 +13,9 @@
 
 <% attributes.each do |attribute| -%>
   <div class="field">
+  <% if attribute.type == :integer -%>
+    <%%= f.number_field :<%= attribute.column_name %>, {min: 0, max: 500} %>
+<% end -%>
 <% if attribute.password_digest? -%>
     <%%= f.label :password %><br>
     <%%= f.password_field :password %>
